@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{9458BF28-6661-4BA6-A229-DCA739E4E80B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDotNet", "DataDotNet\DataDotNet.csproj", "{FA050644-D114-4C16-84B9-0576D10D9148}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9458BF28-6661-4BA6-A229-DCA739E4E80B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9458BF28-6661-4BA6-A229-DCA739E4E80B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9458BF28-6661-4BA6-A229-DCA739E4E80B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9458BF28-6661-4BA6-A229-DCA739E4E80B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA050644-D114-4C16-84B9-0576D10D9148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA050644-D114-4C16-84B9-0576D10D9148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA050644-D114-4C16-84B9-0576D10D9148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA050644-D114-4C16-84B9-0576D10D9148}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
