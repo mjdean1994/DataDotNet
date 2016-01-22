@@ -5,18 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using DataDotNet.Models;
 using RazorEngine;
+using RazorEngine.Templating;
 
 namespace DataDotNet
 {
     public static class DataDotNetExtensions
     {
-        public static MvcHtmlString PieChart(this HtmlHelper helper)
+        public static MvcHtmlString PieChart(this HtmlHelper helper, PieChart model)
         {
-            var template = GetTemplate("DataDotNet.Views.Test.cshtml");
+            //if (model.Data == null || model.Data.Count <= 0)
+            //{
+            //    return new MvcHtmlString("Cannot generate Pie Chart without data.");
+            //}
+
+            var template = GetTemplate("DataDotNet.Views.PieChart.cshtml");
 
             // parse template using RazorEngine
-            var html = RazorEngine.Razor.Parse(template);
+            var html = Engine.Razor.RunCompile(template, "PieChart", null, model);
 
             return new MvcHtmlString(html);
         }

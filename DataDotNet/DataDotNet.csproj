@@ -78,13 +78,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataDotNetExtensions.cs" />
+    <Compile Include="Models\ColorScale.cs" />
+    <Compile Include="Models\PieChart.cs" />
+    <Compile Include="Models\PieChartData.cs" />
+    <Compile Include="Models\PieChartOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Views\Test.cshtml" />
+    <EmbeddedResource Include="Views\PieChart.cshtml" />
     <None Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
