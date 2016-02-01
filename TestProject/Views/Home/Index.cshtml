@@ -1,9 +1,9 @@
 ﻿@using DataDotNet;
-@model DataDotNet.Models.PieChart
+@model DataDotNet.Models.BarChart
 @{
     ViewBag.Title = "Home Page";
 }
 
-<div>
-    @Html.PieChart(Model)
+<div class="well">
+    @Html.BarChart(Model)
 </div>

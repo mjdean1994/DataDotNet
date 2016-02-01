@@ -13,17 +13,17 @@ namespace DataDotNet
 {
     public static class DataDotNetExtensions
     {
-        public static MvcHtmlString PieChart(this HtmlHelper helper, PieChart model)
+        public static MvcHtmlString BarChart(this HtmlHelper helper, BarChart model)
         {
             //if (model.Data == null || model.Data.Count <= 0)
             //{
             //    return new MvcHtmlString("Cannot generate Pie Chart without data.");
             //}
 
-            var template = GetTemplate("DataDotNet.Views.PieChart.cshtml");
+            var template = GetTemplate("DataDotNet.Views.BarChart.cshtml");
 
             // parse template using RazorEngine
-            var html = Engine.Razor.RunCompile(template, "PieChart", null, model);
+            var html = Engine.Razor.RunCompile(template, "BarChart", null, model);
 
             return new MvcHtmlString(html);
         }

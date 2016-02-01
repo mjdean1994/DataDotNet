@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataDotNet.Models;
+using WowDotNetAPI;
+using WowDotNetAPI.Models;
 
 namespace TestProject.Controllers
 {
@@ -11,30 +13,20 @@ namespace TestProject.Controllers
     {
         public ActionResult Index()
         {
-            var pieChart = new PieChart("Test Pie Chart");
-            pieChart.Options.ShowLabels = false;
-            pieChart.AddDataPoint(new PieChartData
-            {
-                Color = "#993366",
-                HighlightColor = "#882255",
-                Label = "Red Label",
-                Value = 10
-            });
-            pieChart.AddDataPoint(new PieChartData
-            {
-                Color = "#669933",
-                HighlightColor = "#558822",
-                Label = "Green Label",
-                Value = 20
-            });
-            pieChart.AddDataPoint(new PieChartData
-            {
-                Color = "#336699",
-                HighlightColor = "#225588",
-                Label = "Blue Label",
-                Value = 30
-            });
-            return View(pieChart);
+            var bar = new BarChart();
+            
+            var Explorer = new WowDotNetAPI.WowExplorer(Region.US, Locale.en_US, "d6f48me7k79cqjtnhqqwzktqkjnc57g8");
+            bar.Data =
+                Explorer.GetGuild("wyrmrest-accord", "The Red Vanguard", GuildOptions.GetMembers)
+                    .Members.Select(x => x.Character)
+                    .GroupBy(x => x.Class)
+                    .Select(sel => new BarChart.DataPoint
+                    {
+                        Label = sel.Key.ToString(),
+                        Value = Convert.ToDouble(sel.Count()),
+                        Color = GetClassColor(sel.Key)
+                    }).OrderBy(x => x.Label).ToList();
+            return View(bar);
         }
 
         public ActionResult About()
@@ -49,6 +41,37 @@ namespace TestProject.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public string GetClassColor(CharacterClass charClass)
+        {
+            switch (charClass)
+            {
+                case CharacterClass.DEATH_KNIGHT:
+                    return "#C41F3B";
+                case CharacterClass.DRUID:
+                    return "#FF7D0A";
+                case CharacterClass.HUNTER:
+                    return "#ABD473";
+                case CharacterClass.MAGE:
+                    return "#69CCF0";
+                case CharacterClass.MONK:
+                    return "#00FF96";
+                case CharacterClass.PALADIN:
+                    return "#F58CBA";
+                case CharacterClass.PRIEST:
+                    return "#CCCCCC";
+                case CharacterClass.ROGUE:
+                    return "#FFF569";
+                case CharacterClass.SHAMAN:
+                    return "#0070DE";
+                case CharacterClass.WARLOCK:
+                    return "#9482C9";
+                case CharacterClass.WARRIOR:
+                    return "#C79C6E";
+            }
+
+            return "black";
         }
     }
 }

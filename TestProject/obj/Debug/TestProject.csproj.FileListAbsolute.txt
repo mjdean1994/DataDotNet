@@ -144,3 +144,4 @@ C:\Users\mdean\Documents\GitHub\DataDotNet\TestProject\bin\RazorEngine.xml
 C:\Users\mdean\Documents\GitHub\DataDotNet\TestProject\obj\Debug\TestProject.csprojResolveAssemblyReference.cache
 C:\Users\mdean\Documents\GitHub\DataDotNet\TestProject\obj\Debug\TestProject.dll
 C:\Users\mdean\Documents\GitHub\DataDotNet\TestProject\obj\Debug\TestProject.pdb
+C:\Users\mdean\Documents\GitHub\DataDotNet\TestProject\bin\WowDotNetAPI.dll

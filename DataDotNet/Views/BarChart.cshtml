@@ -1,0 +1,111 @@
+﻿@model DataDotNet.Models.BarChart
+
+<style>
+    .chart {
+        width: 100%;
+    }
+
+     .axis text {
+         font: 12px sans-serif;
+         font-family: "Trebuchet MS";
+     }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .bar {
+        box-shadow: 10px 10px 10px black;
+    }
+</style>
+
+<svg class="chart"></svg>
+
+<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script>
+
+    var data = @{ WriteLiteral(Model.JsonData()); };
+    
+    var margin = { top: 20, right: 20, bottom: 20, left: 20 },
+        width = parseInt(d3.select(".chart").style("width"), 10) - margin.left - margin.right,
+        height = @Model.Height - margin.top - margin.bottom;
+
+    var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1)
+    .domain(data.map(function (d) { return d.Label }));
+
+    var color = d3.scale.category10();
+
+    var y = d3.scale.linear()
+        .range([height, 0])
+        .domain([0, d3.max(data, function (d) { return d.Value })]);
+
+    if (d3.max(data, function(d) { return d.Value }) < 8) {
+        y.domain([0, 8]);
+    }
+
+    var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+    var chart = d3.select(".chart")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    if ("@Model.ShowXAxis" == "True") {
+        chart.append("g")
+         .attr("class", "x axis")
+         .attr("transform", "translate(0," + height + ")")
+         .call(xAxis); 
+    }
+    
+    if ("@Model.ShowYAxis" == "True") {
+        chart.append("g")
+          .attr("class", "y axis")
+          .call(yAxis);
+    }
+    
+    chart.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return x(d.Label); })
+        .attr("y", function(d) { return y(d.Value); })
+        .attr("height", function(d) { return height - y(d.Value); })
+        .attr("width", x.rangeBand())
+        .attr("fill", function(d, i) {
+            if (d.Color) {
+                return d.Color;
+            }
+            return color(i);
+        });
+
+    function resize() {
+        // update width
+        width = parseInt(d3.select('.chart').style('width'), 10);
+        width = width - margin.left - margin.right;
+
+        // resize the chart
+        x.rangeRoundBands([0, width], .1);
+        d3.select(".chart")
+            .attr("width", width + margin.left + margin.right);
+        
+        chart.selectAll(".bar")
+            .attr("width", x.rangeBand())
+            .attr("x", function(d) {return x(d.Label)});
+
+        chart.select(".x.axis")
+            .call(xAxis); 
+    }
+
+    d3.select(window).on('resize', resize); 
+</script>
