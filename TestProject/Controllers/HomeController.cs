@@ -20,7 +20,7 @@ namespace TestProject.Controllers
                 Explorer.GetGuild("wyrmrest-accord", "The Red Vanguard", GuildOptions.GetMembers)
                     .Members.Select(x => x.Character)
                     .GroupBy(x => x.Class)
-                    .Select(sel => new BarChart.DataPoint
+                    .Select(sel => new DataPoint
                     {
                         Label = sel.Key.ToString(),
                         Value = Convert.ToDouble(sel.Count()),

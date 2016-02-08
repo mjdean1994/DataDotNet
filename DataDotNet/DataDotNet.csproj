@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="DataDotNetExtensions.cs" />
     <Compile Include="Models\BarChart.cs" />
+    <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

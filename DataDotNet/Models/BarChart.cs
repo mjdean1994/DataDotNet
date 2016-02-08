@@ -17,14 +17,6 @@ namespace DataDotNet.Models
             ShowYAxis = true;
         }
 
-        [Serializable]
-        public class DataPoint
-        {
-            public string Label { get; set; }
-            public double Value { get; set; }
-            public string Color { get; set; }
-        }
-
         public List<DataPoint> Data { get; set; }
         public int Height { get; set; }
         public bool ShowXAxis { get; set; }
